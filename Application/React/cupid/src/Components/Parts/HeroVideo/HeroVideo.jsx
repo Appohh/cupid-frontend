@@ -1,8 +1,11 @@
 import videoSource from '../../../assets/videos/Cupid.mp4';
 import'../HeroVideo/HeroVideo.css';
+import { useNavigate } from 'react-router-dom';
 
 
 function HeroVideo() {
+  const navigate = useNavigate();
+
 
   return (
     <>
@@ -12,7 +15,7 @@ function HeroVideo() {
         </video>
         <div className='hero-cta'>
           <h1>Discover the one you always wanted</h1>
-          <button className='btn'>Create a account</button>
+          <button className='btn' onClick={() => {navigate("/register")}}>Create a account</button>
         </div>
       </div>
     </>

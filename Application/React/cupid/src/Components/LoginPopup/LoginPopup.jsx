@@ -1,6 +1,5 @@
 import '../LoginPopup/LoginPopup.css';
 import React, { useState } from 'react';
-import axios from 'axios';
 import UserService from '../../Services/UserService';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react'
@@ -10,19 +9,31 @@ const LoginPopup = ({ onClose }) => {
 
     const navigate = useNavigate();
     const [loggedUser, setLoggedUser] = useContext(Context)
+    const [error, setError] = useState(null);
+
 
     const Authenticate = () => {
         UserService.authenticateUser(formData)
-            .then(data => OnSucces(data))
-            .catch(error => console.log('Authentication failed:', error));
+            .then(data => onSuccess(data))
+            .catch(error => {
+                console.error('Authentication failed:', error);
+                setError('Failed to authenticate. Please try again.');
+            });
     }
 
-    const OnSucces = (data) => {
-        console.log('Authentication successful:', data)
-        setLoggedUser(mapToUser(data))
-        navigate('/foryou');
-        onClose()
+    const onSuccess = (data) => {
+        if (data && data.data) {
+            console.log('Authentication successful:', data)
+            setLoggedUser(mapToUser(data))
+            navigate('/foryou');
+            onClose()
+        } else {
+            console.error('Unexpected data format:', data);
+            setError('Unexpected error. Please try again.');
+        }
     }
+
+
 
     const mapToUser = (dataResponse) => {
         const userJSON = dataResponse.data;
@@ -67,16 +78,15 @@ const LoginPopup = ({ onClose }) => {
             <div className='login-popup'>
                 <span onClick={onClose} className='close'></span>
                 <h2>Login</h2>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <input name='email' type="email" placeholder='Your email..' onChange={handleChange} required />
-                    </div>
-                    <div>
-                        <input name='password' type="password" placeholder='Your password..' onChange={handleChange} required />
-                    </div>
-                    <h3 className='errors'></h3>
+                <form className='login-form' onSubmit={handleSubmit}>
+                    <input name='email' type="email" placeholder='Your email..' onChange={handleChange} required />
+                    <input name='password' type="password" placeholder='Your password..' onChange={handleChange} required />
                     <button className="btn" type="submit">Login</button>
                 </form>
+                <p className='login-register'>Don't have an account? <a href="/register">Register</a></p>
+                <div className='errors'>
+                    {error && <p className='error'>{error}</p>}
+                </div>
             </div>
         </div>
     );

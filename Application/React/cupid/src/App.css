@@ -30,7 +30,20 @@
       cursor: pointer;
   }
 
+  .section-blank {
+    padding: 0 8%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 
+  .white {
+      color: #cccdce;
+  }
+
+  .clickable {
+      cursor: pointer;
+  }
 
   .side {
       grid-column: 1;

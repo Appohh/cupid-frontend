@@ -1,8 +1,9 @@
 import Home from './pages/Home'
+import Register from './pages/Register'
 import ForYou from './pages/ForYou'
 import Matches from './pages/Matches'
 import { Routes, Route } from 'react-router-dom';
-import { createContext , useState } from 'react'
+import { createContext, useState } from 'react'
 
 
 import './App.css'
@@ -22,6 +23,7 @@ function App() {
           <div className='content'>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path='register' element={<Register />} />
               <Route path="/foryou" element={<ForYou />} />
               <Route path="/matches" element={<Matches />} />
             </Routes>

@@ -1,0 +1,71 @@
+.register-process {
+    display: grid;
+    gap: 20px;
+    background: #cacad485;
+    min-height: 70vh;
+    border-radius: 10px;
+}
+
+.register-info {
+    text-align: center;
+}
+
+.register-process-steps {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333744e8;
+    position: relative;
+    height: 62px;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.step {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 3;
+    color: #cccdce;
+    padding: 0 4%;
+}
+
+span.progress-bar {
+    height: 100%;
+    width: 25%;
+    position: absolute;
+    z-index: 2;
+    border-radius: 10px 27px 27px 10px;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(234, 94, 108, 1) 50%, rgba(255, 0, 69, 1) 100%);
+}
+
+.form-register {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.form-register label {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-register input,
+.form-register select, .btn-register-submit {
+    height: 43px;
+    width: 20vw;
+    max-width: 428px;
+    border-radius: 11px;
+    margin: 6px;
+    color: black;
+    padding: 0% 9%;
+    box-sizing: border-box;
+    border: 1px solid #db616bdb;
+}
+
+.btn-register-submit {
+    margin-left: auto;
+    margin-right: 10%;
+    margin-bottom: 20px;
+}
