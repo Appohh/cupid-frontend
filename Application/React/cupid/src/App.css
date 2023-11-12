@@ -1,0 +1,129 @@
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&display=swap');
+
+  * {
+      font-family: 'Syne', sans-serif;
+  }
+
+  body {
+      margin: 0;
+  }
+
+  .mainwrap {
+      display: grid;
+      grid-template-columns: 20% auto;
+  }
+
+  /* General */
+  .btn {
+      border-radius: 15px;
+      margin: auto;
+      display: flex;
+      border: none;
+      font-weight: 700;
+      padding: 21px;
+      color: #cccdce;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .btn:hover {
+      cursor: pointer;
+  }
+
+
+
+  .side {
+      grid-column: 1;
+      background: #323745;
+      display: flex;
+      flex-direction: column;
+      padding: 6%;
+      font-weight: 900;
+      color: #e9e0e0f7;
+      gap: 17px;
+  }
+
+  .side-logo {
+      text-align: center;
+  }
+
+  .nav ul {
+      list-style: none;
+      padding: 0;
+  }
+
+  .nav li {
+    margin-bottom: 12px;
+  }
+
+  .nav li a {
+      text-decoration: none;
+      color: #f1f1f185;
+  }
+
+  .nav li a:hover {
+      color: #ff656585;
+      text-decoration: line-through;
+  }
+
+  .nav li i {
+      margin-right: 10px;
+  }
+
+  .side-user-info {
+      background: #474b58;
+      border-radius: 12px;
+      padding: 9px;
+  }
+
+  .side-user-info .btn {
+      width: 13vw;
+      height: 33px;
+      background: #ea5e6c;
+      font-size: 16px;
+  }
+
+  .side-user-info .btn:hover {
+      box-shadow: inset 1px 1px 20px 5px #683e3e;
+  }
+
+  .user-dropdown-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 14px;
+      white-space: nowrap;
+  }
+
+  .user-dropdown-head:hover {
+      cursor: pointer;
+      color: #ff656585;
+  }
+
+  .user-dropdown-head img {
+      border-radius: 50%;
+  }
+
+  .user-dropdown-head i {
+      transform: rotate(90deg);
+  }
+
+  #user-actions {
+      display: none;
+  }
+  
+
+  .content {
+      grid-column: 2;
+      height: 100vh;
+      overflow-y: scroll;
+      overflow-x: hidden;
+  }
+
+  .footer {
+    width: 100vw;
+    height: 201px;
+    background: #333744;
+    grid-row: 2;
+    grid-column: 1 / 2;
+}

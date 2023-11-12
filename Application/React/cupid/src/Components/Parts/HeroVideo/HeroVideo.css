@@ -1,0 +1,35 @@
+.hero-section {
+    position: relative;
+}
+
+.hero-section video {
+    /* width: 100vw; */
+    width: -webkit-fill-available;
+    height: 50vh;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(0.5);
+}
+
+.hero-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffffd4;
+    position: absolute;
+    top: 50%;
+    white-space: nowrap;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hero-cta .btn {
+    width: 13vw;
+    height: 33px;
+    background: #ea5e6c;
+    font-size: 16px;
+}
+
+.hero-cta h1 {
+    font-weight: 800;
+}
