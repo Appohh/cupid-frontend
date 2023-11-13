@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 
 
-function Step1Register(registerEmail) {
+function Step1Register({ step1Next }) {
     const { register, handleSubmit, watch } = useForm();
     const [passwordMatch, setPasswordMatch] = useState(true);
 
     const onSubmit = (data) => {
         console.log(data);
-        registerEmail = data.email;
+        step1Next(data);
     };
+
+
 
     const handleExternalSubmit = () => {
         handleSubmit(onSubmit)();
