@@ -10,6 +10,38 @@ function authenticateUser(Credentials) {
         });
 }
 
+function validateToken(Token) {
+    return axios.post(`${config.hostname}/user/validateToken`, Token)
+        .then(response => response)
+        .catch(error => {
+            console.error('Failed to validate token:', error);
+            throw error; 
+        });
+}
+
+function checkVerificationStatus(Token) {
+    console.log("Token: ", Token);
+    return axios.get(`${config.hostname}/user/verificationStatus/${Token}`)
+    .then(response => response)
+    .catch(error => {
+        console.error('Failed to retrieve token status:', error);
+        throw error; 
+    });
+}
+
+function createToken(Email) {
+    return axios.post(`${config.hostname}/user/createToken`, Email)
+        .then(response => response)
+        .catch(error => {
+            console.error('Failed to create token:', error);
+            throw error; 
+        });
+}
+
+
 export default {
-    authenticateUser
+    authenticateUser,
+    validateToken,
+    checkVerificationStatus,
+    createToken
 }

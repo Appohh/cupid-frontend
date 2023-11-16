@@ -2,6 +2,7 @@ import Home from './pages/Home'
 import Register from './pages/Register'
 import ForYou from './pages/ForYou'
 import Matches from './pages/Matches'
+import Verify from './pages/Verify'
 import { Routes, Route } from 'react-router-dom';
 import { createContext, useState } from 'react'
 
@@ -26,6 +27,7 @@ function App() {
               <Route path='register' element={<Register />} />
               <Route path="/foryou" element={<ForYou />} />
               <Route path="/matches" element={<Matches />} />
+              <Route path="verify/:token" element={<Verify />} />
             </Routes>
           </div>
           {/* <div className='footer'> </div> */}

@@ -1,9 +1,21 @@
 import React from 'react';
+import { useRef } from 'react';
 
-function RegisterProgress() {
+function RegisterProgress({ progress }) {
+    const progressBarRef = useRef(null);
+
+    const updateProgressBarWidth = (width) => {
+        if (progressBarRef.current) {
+            progressBarRef.current.style.width = width;
+        }
+    };
+
+    updateProgressBarWidth(`${progress}%`);
+
+
     return (
         <div className='register-process-steps'>
-            <span className='progress-bar'></span>
+            <span ref={progressBarRef} className='progress-bar'></span>
             <div className='step'>
                 <span>1</span>
                 <p>Basic info</p>
