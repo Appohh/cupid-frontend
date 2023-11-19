@@ -22,11 +22,11 @@ function RegisterProgress({ progress }) {
             </div>
             <div className='step'>
                 <span>2</span>
-                <p>Profile info</p>
+                <p>Verify email</p>
             </div>
             <div className='step'>
                 <span>3</span>
-                <p>Profile picture</p>
+                <p>Profile info</p>
             </div>
             <div className='step'>
                 <span>4</span>

@@ -53,7 +53,7 @@ span.progress-bar {
 }
 
 .form-register input,
-.form-register select, .btn-register-submit {
+.form-register select, .btn-white, textarea {
     height: 43px;
     width: 20vw;
     max-width: 428px;
@@ -85,4 +85,16 @@ span.progress-bar {
 
 .verify-load img {
     height: 100px;
+}
+
+.form-profile {
+    grid-template-columns: none;
+    gap: 12px;
+}
+
+.profile-container {
+    width: 11vw;
+    height: 11vw;
+    background: aliceblue;
+    border-radius: 50%;
 }

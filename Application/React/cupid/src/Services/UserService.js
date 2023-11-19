@@ -1,6 +1,15 @@
 import axios from "axios";
 import config from "../config/hostConfig";
 
+function createUser(request) {
+    return axios.post(`${config.hostname}/user/create`, request)
+        .then(response => response)
+        .catch(error => {
+            console.error('Failed to create user:', error);
+            throw error; 
+        });
+}
+
 function authenticateUser(Credentials) {
     return axios.post(`${config.hostname}/user/authenticate`, Credentials)
         .then(response => response)
@@ -40,6 +49,7 @@ function createToken(Email) {
 
 
 export default {
+    createUser,
     authenticateUser,
     validateToken,
     checkVerificationStatus,

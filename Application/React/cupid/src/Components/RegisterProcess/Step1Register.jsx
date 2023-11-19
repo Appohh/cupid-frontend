@@ -28,11 +28,11 @@ function Step1Register({ step1Next }) {
         <form className='form-register' onSubmit={handleSubmit(onSubmit)}>
             <label>
                 First Name:
-                <input type='text' {...register("fName")} />
+                <input type='text' {...register("fname")} />
             </label>
             <label>
                 Last Name:
-                <input type='text' {...register("lName")} />
+                <input type='text' {...register("lname")} />
             </label>
             <label>
                 Birthday:
@@ -50,9 +50,9 @@ function Step1Register({ step1Next }) {
                 Gender:
                 <select {...register("gender")}>
                     <option value={''}>Select Gender</option>
-                    <option value={0}>Male</option>
-                    <option value={1}>Female</option>
-                    <option value={2}>Other</option>
+                    <option value={'1'}>Male</option>
+                    <option value={'2'}>Female</option>
+                    <option value={'3'}>Other</option>
                 </select>
             </label>
             <label>
@@ -64,8 +64,7 @@ function Step1Register({ step1Next }) {
                 <input type='password' onChange={handleConfirmPasswordChange} style={{outline: '1px solid ' + (passwordMatch ? 'green' : 'red'), border: 'none'}} />
             </label>
         </form>
-        <div></div>
-        <button className='btn-register-submit clickable' onClick={handleExternalSubmit}>Next</button>
+        <button className='btn-register-submit btn-white clickable' onClick={handleExternalSubmit}>Next</button>
         </>
     );
 }
