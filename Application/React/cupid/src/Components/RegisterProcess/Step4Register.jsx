@@ -11,7 +11,6 @@ function Step4Register({ step4Next }) {
 
     return (
         <>
-            <h1>hey</h1>
         </>
     );
 }

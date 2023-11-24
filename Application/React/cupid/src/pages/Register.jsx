@@ -32,7 +32,10 @@ function Register() {
     const step1Next = (information) => {
         setRegisterState({
             step: 2,
-            information: information
+            information: {
+                ...information,
+                role: 1
+            }
         });
         setProgress(50);
     };

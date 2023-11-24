@@ -16,14 +16,19 @@ const LoginPopup = ({ onClose }) => {
         UserService.authenticateUser(formData)
             .then(data => onSuccess(data))
             .catch(error => {
+                setError('Failed to authenticate, please try again.');
                 console.error('Authentication failed:', error);
-                setError('Failed to authenticate. Please try again.');
+                if (error.response && error.response.status === 401) {
+                setError('Wrong credentials, please try again.');
+                }
             });
     }
 
     const onSuccess = (data) => {
         if (data && data.data) {
             console.log('Authentication successful:', data)
+            //set token in local storage
+            localStorage.setItem('jwt', data.data)
             setLoggedUser(mapToUser(data))
             navigate('/foryou');
             onClose()

@@ -6,16 +6,18 @@ function createUser(request) {
         .then(response => response)
         .catch(error => {
             console.error('Failed to create user:', error);
-            throw error; 
+            throw error;
         });
 }
 
 function authenticateUser(Credentials) {
     return axios.post(`${config.hostname}/user/authenticate`, Credentials)
-        .then(response => response)
+        .then(response => {
+
+            return response;
+        })
         .catch(error => {
             console.error('Failed to authenticate user:', error);
-            throw error; 
         });
 }
 
@@ -24,18 +26,18 @@ function validateToken(Token) {
         .then(response => response)
         .catch(error => {
             console.error('Failed to validate token:', error);
-            throw error; 
+            throw error;
         });
 }
 
 function checkVerificationStatus(Token) {
     console.log("Token: ", Token);
     return axios.get(`${config.hostname}/user/verificationStatus/${Token}`)
-    .then(response => response)
-    .catch(error => {
-        console.error('Failed to retrieve token status:', error);
-        throw error; 
-    });
+        .then(response => response)
+        .catch(error => {
+            console.error('Failed to retrieve token status:', error);
+            throw error;
+        });
 }
 
 function createToken(Email) {
@@ -43,7 +45,7 @@ function createToken(Email) {
         .then(response => response)
         .catch(error => {
             console.error('Failed to create token:', error);
-            throw error; 
+            throw error;
         });
 }
 
