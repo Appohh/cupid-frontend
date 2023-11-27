@@ -9,18 +9,28 @@ import { createContext, useState } from 'react'
 
 import './App.css'
 import Sidebar from './Components/Sidebar/Sidebar';
+import ErrorPopUp from './Components/Mechanism/ErrorPopUp';
 
 export const Context = createContext();
 
 function App() {
   const [loggedUser, setLoggedUser] = useState(null);
+  const [errorPopUp, setErrorPopUp] = useState(null);
+
+  const contextValue = {
+    loggedUser,
+    setLoggedUser,
+    errorPopUp,
+    setErrorPopUp
+  };
 
 
   return (
     <>
-      <Context.Provider value={[loggedUser, setLoggedUser]}>
+      <Context.Provider value={contextValue}>
         <div className='mainwrap'>
           <Sidebar />
+          <ErrorPopUp />
           <div className='content'>
             <Routes>
               <Route path="/" element={<Home />} />

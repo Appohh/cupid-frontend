@@ -1,4 +1,4 @@
-import Navbar from '../Navbar/Navbar.jsx';
+import Navbar from '../Navbar/Navbar.jsx'
 import Logo from '../../assets/images/logo.webp'
 import LoginPopup from '../LoginPopup/LoginPopup'
 import { useContext, useState } from 'react'
@@ -7,7 +7,8 @@ import { Context } from '../../App.jsx'
 
 
 const Sidebar = ({ }) => {
-  const [loggedUser, setLoggedUser] = useContext(Context)
+  const context = useContext(Context)
+  const [loggedUser, setLoggedUser] = [context.loggedUser, context.setLoggedUser]
   const [userInfoDropped, setUserInfoDropped] = useState(false)
   const [loginPopupDropped, setLoginPopupDropped] = useState(false)
   console.log("user:", loggedUser)

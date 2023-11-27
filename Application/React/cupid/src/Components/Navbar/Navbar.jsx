@@ -3,8 +3,8 @@ import { useContext } from 'react'
 import { Context } from '../../App.jsx'
 
 const Navbar = () => {
-
-  const [loggedIn, setloggedIn] = useContext(Context)
+  const context = useContext(Context)
+  const [loggedIn, setloggedIn] = [context.loggedUser, context.setLoggedUser]
 
 
   return (
