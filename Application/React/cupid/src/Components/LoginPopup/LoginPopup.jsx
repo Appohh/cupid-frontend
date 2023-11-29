@@ -8,7 +8,9 @@ import { Context } from '../../App.jsx'
 const LoginPopup = ({ onClose }) => {
 
     const navigate = useNavigate();
-    const [loggedUser, setLoggedUser] = useContext(Context)
+    const { loggedUser, setLoggedUser } = useContext(Context);
+    // const context = useContext(Context)
+    // const [loggedUser, setLoggedUser] = [context.loggedUser, context.setLoggedUser]
     const [error, setError] = useState(null);
 
 

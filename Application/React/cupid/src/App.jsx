@@ -15,7 +15,12 @@ export const Context = createContext();
 
 function App() {
   const [loggedUser, setLoggedUser] = useState(null);
-  const [errorPopUp, setErrorPopUp] = useState(null);
+  const [errorPopUp, setErrorPopUp] = useState({
+    title: '',
+    message: '',
+    color: '',
+    show: false,
+  });
 
   const contextValue = {
     loggedUser,
@@ -30,7 +35,9 @@ function App() {
       <Context.Provider value={contextValue}>
         <div className='mainwrap'>
           <Sidebar />
-          <ErrorPopUp />
+          <div className='error-container'>
+            <ErrorPopUp />
+          </div>
           <div className='content'>
             <Routes>
               <Route path="/" element={<Home />} />

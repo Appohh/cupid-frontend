@@ -9,7 +9,11 @@ const ErrorPopUp = () => {
     console.log("context", context)
     
     if (!errorPopUp || !errorPopUp.title || !errorPopUp.message || !errorPopUp.color) {
-        return <div>An unexpected error has occurred, please contact an administrator.</div>;
+        return null;
+    }
+
+    if (errorPopUp.show === false) {
+        return null;
     }
 
     const { title, message, color } = errorPopUp;
