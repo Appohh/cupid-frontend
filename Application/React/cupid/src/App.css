@@ -148,12 +148,24 @@
   }
 
   .error-popup {
-      background: #ff5959;
-      position: absolute;
-      width: -webkit-fill-available;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
+    background: #ff5959;
+    position: absolute;
+    width: -webkit-fill-available;
+    height: 40px;
+    display: flex;
+    z-index: 999;
+    padding: 10px;
+    box-sizing: border-box;
+    color: #e9e9e9;
+    text-shadow: -1px 1px 4px black;
   }
+
+.error-message {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.error-popup span {
+    margin-left: auto;
+}

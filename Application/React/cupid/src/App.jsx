@@ -19,7 +19,7 @@ function App() {
     title: '',
     message: '',
     color: '',
-    show: false,
+    location: '',
   });
 
   const contextValue = {

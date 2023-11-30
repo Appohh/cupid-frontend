@@ -1,39 +1,39 @@
 import ValidateJwt from "../Components/Mechanism/ValidateJwt";
 import { Context } from '../App.jsx';
 import { useContext, useEffect} from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function ForYou() {
   const token = localStorage.getItem('jwt');
 
-  const { errorPopUp, setErrorPopUp } = useContext(Context);
+  const { setErrorPopUp } = useContext(Context);
   const navigate = useNavigate();
-  console.log(errorPopUp)
+  const currentLocation = useLocation();
 
-  function error() {
-    setErrorPopUp({
-      title: "oops",
-      message: "hey",
-      color: "red",
-      show: true
-    })
-    navigate('/foryou')
-  }
-
-  function cancel() {
-    if (errorPopUp.show) {
+//check for incoming errors
+  useEffect(() => {
+    if (currentLocation.state && currentLocation.state.error) {
+      const { title, message, color, location } = currentLocation.state.error;
       setErrorPopUp({
-        title: "",
-        message: "",
-        color: "",
-        show: false
-      })
-      console.log("cancel", errorPopUp)
+        title,
+        message,
+        color,
+        location,
+      });
     }
-  }
+  }, [currentLocation.state]);
+
 
   
-
+  function error() {
+    const error = {
+      title: "oops",
+      message: "hey",
+      color: "#ff3f4c",
+      location: "/"
+    }
+    navigate("/", { state: { error } });
+  }
 
 
   return (
@@ -44,7 +44,7 @@ function ForYou() {
       ) : (
         <p>Token not found</p>
       )}
-      <ValidateJwt jwt={token} />
+      <button onClick={error}>hi</button>
     </>
   );
 }

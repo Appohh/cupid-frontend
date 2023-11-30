@@ -3,32 +3,35 @@ import HeroVideo from '../Components/Parts/HeroVideo/HeroVideo.jsx';
 import Testimonials from '../Components/Parts/Testimonials/Testimonials.jsx';
 import { Context } from '../App.jsx';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function Home() {
-
-  const { errorPopUp, setErrorPopUp } = useContext(Context);
+  const { setErrorPopUp } = useContext(Context);
   const navigate = useNavigate();
-  console.log(errorPopUp)
+  const currentLocation = useLocation();
+
   function error() {
-    setErrorPopUp({
+    const error = {
       title: "oops",
       message: "hey",
-      color: "red",
-      show: true
-    })
-    navigate('/foryou')
+      color: "#ff3f4c",
+      location: "/foryou"
+    }
+    navigate("/foryou", { state: { error } });
   }
 
-  function cancel() {
-    if (errorPopUp.show) {
+  //check for incoming errors
+  useEffect(() => {
+    if (currentLocation.state && currentLocation.state.error) {
+      const { title, message, color, location } = currentLocation.state.error;
       setErrorPopUp({
-        title: "",
-        message: "",
-        color: "",
-        show: false
-      })
+        title,
+        message,
+        color,
+        location,
+      });
     }
-  }
+  }, [currentLocation.state]);
 
 
 
