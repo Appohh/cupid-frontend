@@ -9,13 +9,14 @@ const ErrorPopUp = () => {
 
     console.log("context", context);
 
-    if (!errorPopUp || !errorPopUp.title || !errorPopUp.message || !errorPopUp.color || !errorPopUp.location) {
-        return null;
-    }
 
-    if (!(errorPopUp.location === currentLocation.pathname)) {
-        console.log("location", "false");
-        setErrorPopUp(null);
+    useEffect(() => {
+        if (errorPopUp && errorPopUp.location !== currentLocation.pathname) {
+            setErrorPopUp(null);
+        }
+    }, [currentLocation, errorPopUp]);
+
+    if (!errorPopUp || !errorPopUp.title || !errorPopUp.message || !errorPopUp.color || !errorPopUp.location) {
         return null;
     }
 
@@ -25,8 +26,8 @@ const ErrorPopUp = () => {
     return (
         <div className='error-popup' style={{ backgroundColor: color }}>
             <div className='error-message'>
-            <h1>{title}</h1>
-            <p>{message}</p>
+                <h1>{title}</h1>
+                <p>{message}</p>
             </div>
             <span className='clickable' onClick={() => setErrorPopUp(null)}>X</span>
         </div>

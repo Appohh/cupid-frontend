@@ -31,7 +31,7 @@ const LoginPopup = ({ onClose }) => {
             console.log('Authentication successful:', data)
             //set token in local storage
             localStorage.setItem('jwt', data.data)
-            setLoggedUser(mapToUser(data))
+            // setLoggedUser(mapToUser(data))
             navigate('/foryou');
             onClose()
         } else {

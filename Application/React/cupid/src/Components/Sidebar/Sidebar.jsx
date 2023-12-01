@@ -3,15 +3,68 @@ import Logo from '../../assets/images/logo.webp'
 import LoginPopup from '../LoginPopup/LoginPopup'
 import { useContext, useState } from 'react'
 import { Context } from '../../App.jsx'
-
-
+import { useJwt } from "react-jwt";
+import UserService from '../../Services/UserService.js'
+import { set } from 'react-hook-form'
+import { useEffect } from 'react'
 
 const Sidebar = ({ }) => {
-  const context = useContext(Context)
-  const [loggedUser, setLoggedUser] = [context.loggedUser, context.setLoggedUser]
+  const { loggedUser, setLoggedUser, setErrorPopUp } = useContext(Context)
   const [userInfoDropped, setUserInfoDropped] = useState(false)
   const [loginPopupDropped, setLoginPopupDropped] = useState(false)
+
+  const [loggedin, setLoggedin] = useState(false)
+
+  const token = localStorage.getItem('jwt')
+
+  const { decodedToken, isExpired } = useJwt(token || "");
+
+
+
+
+    
+
+
+  console.log("decodedToken:", decodedToken)
+  
+
+  useEffect(() => {
+    if (decodedToken) {
+      const userId = decodedToken?.userId;
+      if (userId) {
+        UserService.getUserById(userId)
+          .then(data => {
+            if (data && data.data) {
+              console.log('User fetched:', data);
+              setLoggedUser(data.data);
+              setLoggedin(true);
+            } else {
+              console.error('Unexpected data format:', data);
+              setLoggedin(false);
+              setLoggedUser(null);
+            }
+          })
+          .catch(error => {
+            console.error('Failed to fetch user:', error);
+            setLoggedin(false);
+            setLoggedUser(null);
+          });
+      }
+    } else {
+      setLoggedin(false);
+      setLoggedUser(null);
+    }
+  }, [decodedToken, setLoggedUser]);
+
   console.log("user:", loggedUser)
+
+
+
+  function logOut() {
+    localStorage.removeItem('jwt')
+    setLoggedUser(null)
+  }
+
   function toggleLoginPopup() {
     setLoginPopupDropped(!loginPopupDropped)
   }
@@ -33,22 +86,22 @@ const Sidebar = ({ }) => {
 
   return (
     <div className='side'>
-       {loginPopupDropped && ( <LoginPopup onClose={toggleLoginPopup} /> ) }
+      {loginPopupDropped && (<LoginPopup onClose={toggleLoginPopup} />)}
       <div className='side-logo'>
         <img src={Logo} alt="logo" height="40px" />
       </div>
 
       <div className='side-user-info'>
-        {loggedUser ? (
+        {loggedin ? (
           <>
             <div className='user-dropdown-head'>
               <img src={Logo} alt="user-pic" height="35px" width="50px" />
-              <h2 onClick={dropUserInfo}>Adrian Grace <i id='userDropIcon' className='fa fa-chevron-circle-down' aria-hidden="true"></i></h2>
+              <h2 onClick={dropUserInfo}>{loggedUser?.fname + " " + loggedUser?.lname} <i id='userDropIcon' className='fa fa-chevron-circle-down' aria-hidden="true"></i></h2>
             </div>
             <ul id='user-actions'>
               <h3>My account</h3>
               <h3>Preferences</h3>
-              <h3 onClick={() => setLoggedUser(null)} >Logout</h3>
+              <h3 onClick={logOut} >Logout</h3>
             </ul>
           </>
         ) : (
@@ -58,7 +111,7 @@ const Sidebar = ({ }) => {
 
       <Navbar />
 
-      {loggedUser && (
+      {loggedin && (
 
         <div className='side-frequent-chats'>
 

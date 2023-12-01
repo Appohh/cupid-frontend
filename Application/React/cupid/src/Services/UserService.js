@@ -1,8 +1,37 @@
-import axios from "axios";
-import config from "../config/hostConfig";
+import axios from 'axios';
+import config from '../config/hostConfig';
+
+const instance = axios.create({
+    baseURL: config.hostname,
+});
+
+instance.interceptors.request.use(
+    function (config) {
+        const token = getAuthToken();
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    function (error) {
+        return Promise.reject(error);
+    }
+);
+
+const nonAuthInstance = axios.create({
+    baseURL: config.hostname,
+});
+
+const getAuthToken = () => {
+    if(!localStorage.getItem("jwt")) {
+        console.log("No JWT token found");
+        return;
+    }
+    return localStorage.getItem("jwt");
+};
 
 function createUser(request) {
-    return axios.post(`${config.hostname}/user/create`, request)
+    return instance.post('/user/create', request)
         .then(response => response)
         .catch(error => {
             console.error('Failed to create user:', error);
@@ -10,10 +39,10 @@ function createUser(request) {
         });
 }
 
-function authenticateUser(Credentials) {
-    return axios.post(`${config.hostname}/user/authenticate`, Credentials)
-        .then(response => {
 
+function authenticateUser(Credentials) {
+    return nonAuthInstance.post(`/user/authenticate`, Credentials)
+        .then(response => {
             return response;
         })
         .catch(error => {
@@ -22,7 +51,7 @@ function authenticateUser(Credentials) {
 }
 
 function validateToken(Token) {
-    return axios.post(`${config.hostname}/user/validateToken`, Token)
+    return nonAuthInstance.post(`/user/validateToken`, Token)
         .then(response => response)
         .catch(error => {
             console.error('Failed to validate token:', error);
@@ -32,7 +61,7 @@ function validateToken(Token) {
 
 function checkVerificationStatus(Token) {
     console.log("Token: ", Token);
-    return axios.get(`${config.hostname}/user/verificationStatus/${Token}`)
+    return nonAuthInstance.get(`/user/verificationStatus/${Token}`)
         .then(response => response)
         .catch(error => {
             console.error('Failed to retrieve token status:', error);
@@ -41,10 +70,19 @@ function checkVerificationStatus(Token) {
 }
 
 function createToken(Email) {
-    return axios.post(`${config.hostname}/user/createToken`, Email)
+    return nonAuthInstance.post(`/user/createToken`, Email)
         .then(response => response)
         .catch(error => {
             console.error('Failed to create token:', error);
+            throw error;
+        });
+}
+
+function getUserById(id) {
+    return instance.get(`${config.hostname}/user/${id}`)
+        .then(response => response)
+        .catch(error => {
+            console.error('Failed to retrieve user:', error);
             throw error;
         });
 }
@@ -55,5 +93,6 @@ export default {
     authenticateUser,
     validateToken,
     checkVerificationStatus,
-    createToken
+    createToken,
+    getUserById
 }
