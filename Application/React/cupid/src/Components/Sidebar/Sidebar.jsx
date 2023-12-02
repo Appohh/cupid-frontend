@@ -7,6 +7,7 @@ import { useJwt } from "react-jwt";
 import UserService from '../../Services/UserService.js'
 import { set } from 'react-hook-form'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Sidebar = ({ }) => {
   const { loggedUser, setLoggedUser, setErrorPopUp } = useContext(Context)
@@ -17,8 +18,9 @@ const Sidebar = ({ }) => {
 
   const token = localStorage.getItem('jwt')
 
+  
   const { decodedToken, isExpired } = useJwt(token || "");
-
+  const navigate = useNavigate();
 
 
 
@@ -30,6 +32,20 @@ const Sidebar = ({ }) => {
 
   useEffect(() => {
     if (decodedToken) {
+
+      if (isExpired) {
+        setLoggedUser(null);
+        localStorage.removeItem('jwt');
+        const error = {
+          title: "Login expired",
+          message: "Please login again",
+          color: "#ff3f4c",
+          location: "/"
+        }
+        navigate("/", { state: { error } });
+        return;
+      }
+
       const userId = decodedToken?.userId;
       if (userId) {
         UserService.getUserById(userId)

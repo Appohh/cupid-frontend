@@ -52,7 +52,7 @@ span.progress-bar {
     flex-direction: column;
 }
 
-.form-register input,
+.form-register input:not([type="file"]),
 .form-register select, .btn-white, textarea {
     height: 43px;
     width: 20vw;
@@ -97,4 +97,6 @@ span.progress-bar {
     height: 11vw;
     background: aliceblue;
     border-radius: 50%;
+    background-size: cover !important;
+    background-position: center !important;
 }

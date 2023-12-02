@@ -63,9 +63,18 @@ function Register() {
             console.log('User created successfully', response.data);
         }).catch((error) => {
             console.error('Error creating user:', error);
+
+            if (error.response && error.response.status === 409) {
+                setError({
+                    occured: true,
+                    message: 'Account already exists'
+                });
+                return;
+            }
+
             setError({
                 occured: true,
-                message: error.message
+                message: 'Unexpected error occurred, please try again'
             });
         });
     };
