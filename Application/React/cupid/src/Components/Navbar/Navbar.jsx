@@ -1,6 +1,6 @@
-import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import { useContext } from 'react'
 import { Context } from '../../App.jsx'
+import CustomLink from '../Mechanism/DynamicNavLinks.jsx'
 
 const Navbar = () => {
   const context = useContext(Context)
@@ -27,18 +27,7 @@ const Navbar = () => {
   )
 }
 
-function CustomLink({ to, children, icon, ...props }) {
-  const resolvedPath = useResolvedPath(to)
-  const isActive = useMatch({ path: resolvedPath.pathname })
-  return (
-    <li className={isActive ? "active" : ""}>
-      <Link to={to} {...props}>
-        <i className={icon}></i>
-        {children}
-      </Link>
-    </li>
-  )
-}
+
 
 export default Navbar;
 

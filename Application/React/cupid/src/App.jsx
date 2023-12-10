@@ -10,6 +10,7 @@ import { createContext, useState } from 'react'
 import './App.css'
 import Sidebar from './Components/Sidebar/Sidebar';
 import ErrorPopUp from './Components/Mechanism/ErrorPopUp';
+import Preferences from './pages/Preferences'
 
 export const Context = createContext();
 
@@ -42,6 +43,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path='register' element={<Register />} />
+              <Route path='preferences' element={<Preferences />} />
               <Route path="/foryou" element={<ForYou />} />
               <Route path="/matches" element={<Matches />} />
               <Route path="verify/:token" element={<Verify />} />

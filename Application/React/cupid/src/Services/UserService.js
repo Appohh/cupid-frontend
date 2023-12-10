@@ -87,6 +87,33 @@ function getUserById(id) {
         });
 }
 
+function userFilledPreferences(userId) {
+    return instance.get(`${config.hostname}/user/validatePreference/${userId}`)
+        .then(response => response)
+        .catch(error => {
+            console.error('Failed to retrieve user preferences:', error);
+            throw error;
+        });
+}
+
+function updateUserPreferences(updatePreferenceRequest) {
+    return instance.post(`${config.hostname}/updatePreference`, updatePreferenceRequest)
+        .then(response => response)
+        .catch(error => {
+            console.error('Failed to update user preferences:', error);
+            throw error;
+        });
+}
+
+function userFilledAppearance(userId) {
+    return instance.get(`${config.hostname}/user/appearance/${userId}`)
+        .then(response => response)
+        .catch(error => {
+            console.error('Failed to retrieve user appearance:', error);
+            throw error;
+        });
+}
+
 
 export default {
     createUser,
@@ -94,5 +121,7 @@ export default {
     validateToken,
     checkVerificationStatus,
     createToken,
-    getUserById
+    getUserById,
+    userFilledPreferences,
+    updateUserPreferences,
 }

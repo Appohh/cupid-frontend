@@ -8,6 +8,7 @@ import UserService from '../../Services/UserService.js'
 import { set } from 'react-hook-form'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import CustomLink from '../Mechanism/DynamicNavLinks.jsx'
 
 const Sidebar = ({ }) => {
   const { loggedUser, setLoggedUser, setErrorPopUp } = useContext(Context)
@@ -115,8 +116,9 @@ const Sidebar = ({ }) => {
               <h2 onClick={dropUserInfo}>{loggedUser?.fname + " " + loggedUser?.lname} <i id='userDropIcon' className='fa fa-chevron-circle-down' aria-hidden="true"></i></h2>
             </div>
             <ul id='user-actions'>
-              <h3>My account</h3>
-              <h3>Preferences</h3>
+              <CustomLink to="/profile">Profile</CustomLink>
+              <CustomLink to="/preferences">Preferences</CustomLink>
+              <CustomLink to="/appearance">Appearance</CustomLink>
               <h3 onClick={logOut} >Logout</h3>
             </ul>
           </>
