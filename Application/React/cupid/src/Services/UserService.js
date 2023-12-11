@@ -97,7 +97,7 @@ function userFilledPreferences(userId) {
 }
 
 function updateUserPreferences(updatePreferenceRequest) {
-    return instance.post(`${config.hostname}/updatePreference`, updatePreferenceRequest)
+    return instance.post(`${config.hostname}/user/updatePreference`, updatePreferenceRequest)
         .then(response => response)
         .catch(error => {
             console.error('Failed to update user preferences:', error);

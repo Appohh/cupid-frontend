@@ -14,8 +14,15 @@ const Preferences = () => {
         
         const updatedData = {
             ...data,
-            userId: loggedUser.id
+            age: parseInt(data.age),
+            distance: parseInt(data.distance),
+            gender: parseInt(data.gender),
+            bodytype: parseInt(data.bodytype),
+            ethnicity: parseInt(data.ethnicity),
+            userId: parseInt(loggedUser.id)
         };
+
+        console.log("updatedData", updatedData);
 
         UserService.updateUserPreferences(updatedData).then((data) => {
             console.log(data)
@@ -46,7 +53,7 @@ const Preferences = () => {
                         <label>Distance</label>
                     </div>
                     <div className="user-box">
-                        <select {...register("bodytype")} required>
+                        <select {...register("bodyType")} required>
                             <option value="">Select Body Type</option>
                             <option value="1">Slim</option>
                             <option value="2">Average</option>
