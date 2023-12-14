@@ -235,6 +235,8 @@ body {
 .profile-locked .btn {
     margin: 0;
     color: #f63044;
+    background: #333744cf;
+    text-shadow: -2px 0px 0px black;
 }
 
 #preference-content {

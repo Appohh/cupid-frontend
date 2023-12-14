@@ -12,16 +12,19 @@ function ForYou() {
   const [profileFinished, setProfileFinished] = useState(false)
 
   useEffect(() => {
-    UserService.userFilledPreferences(loggedUser?.id).then((data) => {
-      console.log("datad", data.data)
-      if (data.data === true) {
-        setProfileFinished(true)
-      } else {
-        setProfileFinished(false)
+    Promise.all([
+      UserService.userFilledPreferences(loggedUser?.id),
+      UserService.userFilledAppearance(loggedUser?.id)
+    ]).then(([preferenceData, appearanceData]) => {
+      console.log("preferenceData", preferenceData);
+      console.log("appearanceData", appearanceData);
+      if (preferenceData.data && appearanceData.data) {
+        setProfileFinished(true);
       }
-    })
-
-  }, [loggedUser])
+    }).catch((error) => {
+      console.log("error", error);
+    });
+  }, []);
 
   //check for incoming errors
   useEffect(() => {
@@ -42,9 +45,13 @@ function ForYou() {
       <>
         <div className="foryou-content">
           <div className='profile-locked'>
-            <i class="fa fa-lock fa-5x" aria-hidden="true"></i>
+            <i className="fa fa-lock fa-5x" aria-hidden="true"></i>
             <h1>Complete your profile to see your potential matches</h1>
-            <button className='btn' onClick={() => navigate("/profile")}>Complete Profile</button>
+            <div style={{ display: 'flex', gap: '28px' }}>
+              <button className='btn' onClick={() => navigate("/preferences")}>Preferences</button>
+              <button className='btn' onClick={() => navigate("/appearance")}>Appearance</button>
+            </div>
+
           </div>
           <div className="profile-card" >
             <div className="profile-img" style={{ backgroundImage: "url('https://i.pinimg.com/736x/14/1c/51/141c51b21f63f58d4c2550b8d27109e1.jpg')" }}></div>

@@ -106,10 +106,19 @@ function updateUserPreferences(updatePreferenceRequest) {
 }
 
 function userFilledAppearance(userId) {
-    return instance.get(`${config.hostname}/user/appearance/${userId}`)
+    return instance.get(`${config.hostname}/user/validateAppearance/${userId}`)
         .then(response => response)
         .catch(error => {
             console.error('Failed to retrieve user appearance:', error);
+            throw error;
+        });
+}
+
+function updateUserAppearance(updateAppearanceRequest) {
+    return instance.post(`${config.hostname}/user/updateAppearance`, updateAppearanceRequest)
+        .then(response => response)
+        .catch(error => {
+            console.error('Failed to update user appearance:', error);
             throw error;
         });
 }
@@ -124,4 +133,6 @@ export default {
     getUserById,
     userFilledPreferences,
     updateUserPreferences,
+    userFilledAppearance,
+    updateUserAppearance,
 }
