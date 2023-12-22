@@ -1,5 +1,6 @@
 import axios from 'axios';
 import config from '../config/hostConfig';
+import { isExpired } from 'react-jwt';
 
 const instance = axios.create({
     baseURL: config.hostname,
@@ -17,6 +18,19 @@ instance.interceptors.request.use(
         return Promise.reject(error);
     }
 );
+
+instance.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      if (isExpired(localStorage.getItem('jwt'))) {
+      localStorage.removeItem('jwt');
+      window.location.href = '/';
+      return Promise.reject(error);
+      }
+    }
+  );
 
 const nonAuthInstance = axios.create({
     baseURL: config.hostname,
