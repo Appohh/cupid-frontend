@@ -1,5 +1,5 @@
 import Navbar from '../Navbar/Navbar.jsx'
-import Logo from '../../assets/images/logo.webp'
+import Logo from '../../assets/images/Logo-Cupid-FINAL.png'
 import LoginPopup from '../LoginPopup/LoginPopup'
 import { useContext, useState } from 'react'
 import { Context } from '../../App.jsx'
@@ -80,6 +80,8 @@ const Sidebar = ({ }) => {
   function logOut() {
     localStorage.removeItem('jwt')
     setLoggedUser(null)
+    setLoggedin(false)
+    navigate('/')
   }
 
   function toggleLoginPopup() {
@@ -105,14 +107,14 @@ const Sidebar = ({ }) => {
     <div className='side'>
       {loginPopupDropped && (<LoginPopup onClose={toggleLoginPopup} />)}
       <div className='side-logo'>
-        <img src={Logo} alt="logo" height="40px" />
+        <img src={Logo} alt="logo" height="128px" width="270px" />
       </div>
 
       <div className='side-user-info'>
         {loggedin ? (
           <>
             <div className='user-dropdown-head'>
-              <img src={Logo} alt="user-pic" height="35px" width="50px" />
+              <img src={`src/assets/uploaded-images/${loggedUser.pimage}`} alt="user-pic" height="35px" width="50px" />
               <h2 onClick={dropUserInfo}>{loggedUser?.fname + " " + loggedUser?.lname} <i id='userDropIcon' className='fa fa-chevron-circle-down' aria-hidden="true"></i></h2>
             </div>
             <ul id='user-actions'>

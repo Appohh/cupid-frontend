@@ -86,8 +86,8 @@ const LoginPopup = ({ onClose }) => {
                 <span onClick={onClose} className='close'></span>
                 <h2>Login</h2>
                 <form className='login-form' onSubmit={handleSubmit}>
-                    <input name='email' type="email" placeholder='Your email..' onChange={handleChange} required />
-                    <input name='password' type="password" placeholder='Your password..' onChange={handleChange} required />
+                    <input name='email' type="email" placeholder='Your email..' onChange={handleChange} required autoComplete="username"/>
+                    <input name='password' type="password" placeholder='Your password..' onChange={handleChange} required autoComplete="current-password"/>
                     <button className="btn" type="submit">Login</button>
                 </form>
                 <p className='login-register'>Don't have an account? <a href="/register">Register</a></p>
