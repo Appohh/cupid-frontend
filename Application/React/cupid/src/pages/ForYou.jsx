@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import UserService from '../Services/UserService.js'
 import ForYouService from '../Services/ForYouService.js'
 import { useState } from 'react';
-import image from '../assets/uploaded-images/52903519-b731-414d-95a4-b92bb1ac44c7.jpg'
+import Deck from '../Components/Deck/Deck.jsx';
 
 function ForYou() {
 
@@ -84,17 +84,7 @@ function ForYou() {
     return (
       <>
         <div className="foryou-content">
-          {potentialMatches.map((targetUser) => (
-            <div className="profile-card" key={targetUser.id}>
-              <div className="profile-img" style={{ backgroundImage: `url(src/assets/uploaded-images/${targetUser.pimage})` }}></div>
-              <div className="profile-info">
-                <h2 className="name">{targetUser.fname}, {new Date().getFullYear() - new Date(targetUser.birthday).getFullYear()}</h2>
-                <p className="work">Founder at Apple</p>
-                <p className="location">5km away</p>
-                <p className="bio">{targetUser.bio}</p>
-              </div>
-            </div>
-          ))}
+          <Deck cards={potentialMatches} />
         </div>
       </>
     );
