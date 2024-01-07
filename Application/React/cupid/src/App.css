@@ -309,3 +309,53 @@ body {
     margin-top: 40px;
     letter-spacing: 4px
 }
+
+/* matches */
+
+.matches-content {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    padding: 0 5%;
+    background: aliceblue;
+}
+
+.matches-header h1 {
+    color: #333744;
+    font-weight: 800;
+}
+
+.matches-container {
+    min-height: 85vh;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.matches-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 310px;
+    background-size: cover;
+    border-radius: 18px;
+    padding: 4%;
+    color: white;
+    text-shadow: 1px 1px 6px #000000b0;
+}
+
+.matches-card .btn-message {
+    padding: 2% 5%;
+    background: none;
+    border-radius: 11px;
+    font-size: 16px;
+    color: white;
+    border: 2px solid #fa1d22;
+    text-shadow: 0px 0px 5px black;
+    transition: 0.3s ease;
+}
+
+.matches-card .btn-message:hover {
+    background: #ff4343;
+    cursor: pointer;
+}

@@ -84,7 +84,7 @@ function ForYou() {
     return (
       <>
         <div className="foryou-content">
-          <Deck cards={potentialMatches} />
+          <Deck cards={potentialMatches} userId={loggedUser.id} />
         </div>
       </>
     );

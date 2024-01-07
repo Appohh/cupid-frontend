@@ -2,8 +2,10 @@ import React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import ProfileCard from '../ProfileCards/ProfileCard';
 import './Deck.css'
+import SwipeService from '../../Services/SwipeService';
+import MatchService from '../../Services/MatchService';
 
-const Deck = ({ cards }) => {
+const Deck = ({ cards, userId }) => {
     const [potentialMatches, setPotentialMatches] = useState([])
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
     const [CurrentCardPosition, setCurrentCardPosition] = useState(null);
@@ -76,7 +78,49 @@ const Deck = ({ cards }) => {
     const handleSwipe = (direction) => {
         console.log("swiped", direction)
         setCurrentCardIndex(currentCardIndex + 1);
-        //swipe service
+
+        //create swipe request
+        const createSwipeRequest = {
+            origin_userId: userId,
+            target_userId: potentialMatches[currentCardIndex].id,
+            direction: direction
+        }
+
+        let createdSwipeId = null;
+
+        //send swipe request
+        SwipeService.createSwipe(createSwipeRequest).then((response) => {
+            console.log("swipe response", response)
+            createdSwipeId = response?.data?.id;
+            //check if match
+            SwipeService.checkMatch(createSwipeRequest).then((response) => {
+                console.log("check match response", response)
+                if (response.data) {
+                    //create match
+                    console.log("match true")
+                    const createMatchRequest = {
+                        userId1: createSwipeRequest.origin_userId,
+                        userId2: createSwipeRequest.target_userId
+                    }
+                    //send match request
+                    MatchService.createMatch(createMatchRequest).then((response) => {
+                        console.log("match response", response)
+                    }).catch((error) => {
+                        //if match could not be made delete swipe
+                        SwipeService.deleteSwipe(createdSwipeId).then((response) => {
+                            console.log("delete swipe response", response)
+                        }).catch((error) => {
+                            console.log("delete swipe error", error);
+                        });
+                        console.log("error", error);
+                    });
+                }
+            }).catch((error) => {
+                console.log("error", error);
+            });
+        }).catch((error) => {
+            console.log("error", error);
+        });
     }
 
     return (
