@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ProfileCard.css'
 
-function ProfileCard({ targetUser, setCardPosition, parentSetDragging, currentClass }) {
+function ProfileCard({ targetUser, setCardPosition, parentSetDragging, currentClass, resetCardPosition, setResetCardPosition }) {
     const [dragging, setDragging] = useState(false);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const cardRef = useRef(null);
@@ -47,6 +47,13 @@ function ProfileCard({ targetUser, setCardPosition, parentSetDragging, currentCl
             window.removeEventListener('mouseup', handleMouseUp);
         };
     }, [dragging]);
+
+    useEffect(() => {
+        if (resetCardPosition) {
+            setPosition({ x: 0, y: 0 });
+            setResetCardPosition(false);
+        }
+    }, [resetCardPosition]);
 
     return (
         <div

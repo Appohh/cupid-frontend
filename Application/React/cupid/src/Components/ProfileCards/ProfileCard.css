@@ -1,6 +1,7 @@
 .profile-card {
     display: flex;
     flex-direction: column;
+    position: absolute;
     border-radius: 15px;
     width: 30vw;
     background: linear-gradient(347deg, rgb(103 95 246) 0%, rgba(234, 94, 108, 1) 50%, rgba(255, 0, 69, 1) 100%);

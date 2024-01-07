@@ -17,6 +17,7 @@
     display: flex;
     justify-content: flex-start;
     opacity: 0;
+    z-index: 2;
 }
 
 .deck-right {
@@ -24,6 +25,7 @@
     display: flex;
     justify-content: flex-end;
     opacity: 0;
+    z-index: 2;
 }
 
 .deck-left span {

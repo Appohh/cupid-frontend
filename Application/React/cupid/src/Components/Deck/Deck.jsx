@@ -8,6 +8,7 @@ const Deck = ({ cards }) => {
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
     const [CurrentCardPosition, setCurrentCardPosition] = useState(null);
     const [dragging, setDragging] = useState(false);
+    const [resetCardPosition, setResetCardPosition] = useState(false);
     const deckLeftRef = useRef(null);
     const deckRightRef = useRef(null);
 
@@ -64,6 +65,11 @@ const Deck = ({ cards }) => {
                 }
                 handleSwipe(1);
             }
+
+            //reset card position
+            setResetCardPosition(true);
+
+
         }
     }, [dragging]);
 
@@ -81,7 +87,7 @@ const Deck = ({ cards }) => {
             </div>
             <div className='deck-center'>
                 {[...potentialMatches].reverse().map((potentialMatch, index) => {
-                    return <ProfileCard key={potentialMatch.id} targetUser={potentialMatch} setCardPosition={setCurrentCardPosition} parentSetDragging={setDragging} currentClass={potentialMatches.length - index - 1} />
+                    return <ProfileCard key={potentialMatch.id} targetUser={potentialMatch} setCardPosition={setCurrentCardPosition} parentSetDragging={setDragging} currentClass={potentialMatches.length - index - 1} resetCardPosition={resetCardPosition} setResetCardPosition={setResetCardPosition} />
                 })}
                 {currentCardIndex >= potentialMatches.length && <p>No more cards left to display.</p>}
             </div>
