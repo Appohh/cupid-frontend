@@ -23,12 +23,18 @@ function App() {
     color: '',
     location: '',
   });
+  const [sendNotification, setSendNotification] = useState({
+    receiverId: null,
+    message: '',
+  });
 
   const contextValue = {
     loggedUser,
     setLoggedUser,
     errorPopUp,
-    setErrorPopUp
+    setErrorPopUp,
+    sendNotification,
+    setSendNotification,
   };
 
 

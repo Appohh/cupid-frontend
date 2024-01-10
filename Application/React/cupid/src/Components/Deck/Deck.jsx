@@ -4,6 +4,7 @@ import ProfileCard from '../ProfileCards/ProfileCard';
 import './Deck.css'
 import SwipeService from '../../Services/SwipeService';
 import MatchService from '../../Services/MatchService';
+import Notification from '../Notification/NotificationComponent'
 
 const Deck = ({ cards, userId }) => {
     const [potentialMatches, setPotentialMatches] = useState([])
@@ -13,6 +14,8 @@ const Deck = ({ cards, userId }) => {
     const [resetCardPosition, setResetCardPosition] = useState(false);
     const deckLeftRef = useRef(null);
     const deckRightRef = useRef(null);
+
+
 
     useEffect(() => {
         setPotentialMatches(cards)
@@ -102,6 +105,7 @@ const Deck = ({ cards, userId }) => {
                         userId1: createSwipeRequest.origin_userId,
                         userId2: createSwipeRequest.target_userId
                     }
+
                     //send match request
                     MatchService.createMatch(createMatchRequest).then((response) => {
                         console.log("match response", response)
@@ -125,6 +129,7 @@ const Deck = ({ cards, userId }) => {
 
     return (
         <div className="deck">
+            <Notification receiverId={2} />
             <div className='deck-left'
                 ref={deckLeftRef}>
                 <span></span>

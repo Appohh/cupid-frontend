@@ -3,8 +3,11 @@ import { useContext, useEffect, useState } from 'react'
 import MatchService from "../Services/MatchService"
 
 const Matches = () => {
-  const { loggedUser, setErrorPopUp } = useContext(Context);
+  const { loggedUser, setErrorPopUp, setSendNotification, setMessageSent  } = useContext(Context);
   const [matchUsers, setMatchUsers] = useState([])
+
+  console.log("context", Context)
+  
 
   useEffect(() => {
     MatchService.getMatchingUsersById(loggedUser?.id)
@@ -30,6 +33,8 @@ const Matches = () => {
             <h1>Matches</h1>
           </div>
           <h2>No matches yet</h2>
+          <button onClick={() => {setSendNotification({receiverId: 28, text: 'hey'})}} className="btn-message">Message</button>
+
         </div>
       </>
     )
@@ -47,7 +52,7 @@ const Matches = () => {
 
               <div className="matches-card" key={user.id} style={{ backgroundImage: `url(src/assets/uploaded-images/${user.pimage})` }}>
                 <h2>{user.fname} {user.lname}</h2>
-                <button className="btn-message">Message</button>
+                <button onClick={() => {setSendNotification({receiverId: 28, text: 'hey'})}} className="btn-message">Message</button>
               </div>
             ))}
           </div>

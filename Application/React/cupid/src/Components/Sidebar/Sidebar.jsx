@@ -9,6 +9,7 @@ import { set } from 'react-hook-form'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CustomLink from '../Mechanism/DynamicNavLinks.jsx'
+import NotificationComponent from '../Notification/NotificationComponent.jsx'
 
 const Sidebar = ({ }) => {
   const { loggedUser, setLoggedUser, setErrorPopUp } = useContext(Context)
@@ -123,6 +124,7 @@ const Sidebar = ({ }) => {
               <CustomLink to="/appearance">Appearance</CustomLink>
               <h3 onClick={logOut} >Logout</h3>
             </ul>
+            <NotificationComponent />
           </>
         ) : (
           <button onClick={() => setLoginPopupDropped(!loginPopupDropped)} className='btn'>Login</button>
