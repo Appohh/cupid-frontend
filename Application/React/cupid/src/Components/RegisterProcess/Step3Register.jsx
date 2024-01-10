@@ -26,7 +26,7 @@ function Step3Register({ step3Next }) {
                 alert('Please select an image file.');
                 return;
             }
-            const maxSizeInBytes = 5 * 1024 * 1024; // 5MB
+            const maxSizeInBytes = 5 * 1024 * 1024; //5MB
             if (file.size > maxSizeInBytes) {
                 alert('Image size exceeds the limit (5MB).');
 

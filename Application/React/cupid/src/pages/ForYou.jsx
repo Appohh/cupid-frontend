@@ -36,7 +36,7 @@ function ForYou() {
     }).catch((error) => {
       console.log("error", error);
     });
-  }, []);
+  }, [loggedUser?.id]);
 
   //check for incoming errors
   useEffect(() => {

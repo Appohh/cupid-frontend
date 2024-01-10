@@ -94,6 +94,15 @@ function updateUserAppearance(updateAppearanceRequest) {
         });
 }
 
+function validateReferalByCode(code) {
+    return instance.get(`${config.hostname}/user/referral/${code}`)
+        .then(response => response)
+        .catch(error => {
+            console.error('Failed to retrieve referal:', error);
+            throw error;
+        });
+}
+
 
 export default {
     createUser,
@@ -106,4 +115,5 @@ export default {
     updateUserPreferences,
     userFilledAppearance,
     updateUserAppearance,
+    validateReferalByCode
 }

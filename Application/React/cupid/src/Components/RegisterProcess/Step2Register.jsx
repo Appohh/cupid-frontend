@@ -8,7 +8,7 @@ function Step2Register({ step2Next, sendToken }) {
 
     const [verified, setVerified] = useState(false);
     useEffect(() => {
-        let token = sendToken(); // Get the initial token
+        let token = sendToken(); //get token
         console.log("token1",token);
     
         const checkVerificationStatus = async () => {
@@ -17,18 +17,16 @@ function Step2Register({ step2Next, sendToken }) {
                 if (response.data === 1) {
                     setVerified(true);
                 } else {
-                    setTimeout(checkVerificationStatus, 5000); // Re-check after 5 seconds if not verified
+                    setTimeout(checkVerificationStatus, 5000); //check every 5 seconds
                 }
             } catch (error) {
                 // Handle error
             }
         };
     
-        checkVerificationStatus(); // Initial check
+        checkVerificationStatus(); 
     
         return () => {
-            // Cleanup if component unmounts
-            // Clear any ongoing setTimeouts
             clearTimeout(checkVerificationStatus);
         };
     }, [sendToken]);
