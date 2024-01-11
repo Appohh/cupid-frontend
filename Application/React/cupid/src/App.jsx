@@ -12,6 +12,7 @@ import Sidebar from './Components/Sidebar/Sidebar';
 import ErrorPopUp from './Components/Mechanism/ErrorPopUp';
 import Preferences from './pages/Preferences'
 import Appearance from './pages/Appearance'
+import AccountFinish from './pages/AccountFinish'
 
 export const Context = createContext();
 
@@ -54,6 +55,7 @@ function App() {
               <Route path='appearance' element={<Appearance />} />
               <Route path="/foryou" element={<ForYou />} />
               <Route path="/matches" element={<Matches />} />
+              <Route path="/foryoulock" element={<AccountFinish />} />
               <Route path="verify/:token" element={<Verify />} />
             </Routes>
           </div>

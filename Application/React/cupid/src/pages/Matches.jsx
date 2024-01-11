@@ -1,13 +1,16 @@
 import { Context } from '../App.jsx';
 import { useContext, useEffect, useState } from 'react'
 import MatchService from "../Services/MatchService"
+import MessagePopUp from '../Components/MessagePopUp/MessagePopUp.jsx'
 
 const Matches = () => {
-  const { loggedUser, setErrorPopUp, setSendNotification, setMessageSent  } = useContext(Context);
+  const { loggedUser, setErrorPopUp, setSendNotification } = useContext(Context);
   const [matchUsers, setMatchUsers] = useState([])
+  const [showMessagePopUp, setShowMessagePopUp] = useState(false)
+  const [receiverId, setReceiverId] = useState(null)
 
   console.log("context", Context)
-  
+
 
   useEffect(() => {
     MatchService.getMatchingUsersById(loggedUser?.id)
@@ -24,17 +27,25 @@ const Matches = () => {
     console.log("matchUsers", matchUsers)
   }, [matchUsers])
 
+  const toggleShowMessagePopUp = (id) => {
+    setReceiverId(id)
+    setShowMessagePopUp(!showMessagePopUp)
+  }
+
+
 
   if (matchUsers.length === 0) {
     return (
       <>
+
+        {showMessagePopUp && (<MessagePopUp receiverId={receiverId} onClose={toggleShowMessagePopUp} />)}
         <div className="matches-content">
-        <div className="matches-header">
+          <div className="matches-header">
             <h1>Matches</h1>
           </div>
           <h2>No matches yet</h2>
-          <button onClick={() => {setSendNotification({receiverId: 28, text: 'hey'})}} className="btn-message">Message</button>
-
+          <button onClick={() => { setSendNotification({ receiverId: 28, text: '💓You got a new match!' }) }} className="btn-message">Message</button>
+          <button onClick={toggleShowMessagePopUp} className="btn-message">Message</button>
         </div>
       </>
     )
@@ -43,6 +54,7 @@ const Matches = () => {
   if (matchUsers.length > 0) {
     return (
       <>
+        {showMessagePopUp && (<MessagePopUp receiverId={receiverId} onClose={toggleShowMessagePopUp} />)}
         <div className="matches-content">
           <div className="matches-header">
             <h1>Matches</h1>
@@ -52,7 +64,7 @@ const Matches = () => {
 
               <div className="matches-card" key={user.id} style={{ backgroundImage: `url(src/assets/uploaded-images/${user.pimage})` }}>
                 <h2>{user.fname} {user.lname}</h2>
-                <button onClick={() => {setSendNotification({receiverId: 28, text: 'hey'})}} className="btn-message">Message</button>
+                <button className="btn-message" onClick={() => toggleShowMessagePopUp(user.id)}>Message</button>
               </div>
             ))}
           </div>

@@ -359,3 +359,7 @@ body {
     background: #ff4343;
     cursor: pointer;
 }
+
+.Toastify__toast-body div {
+    font-family: sans-serif;
+}

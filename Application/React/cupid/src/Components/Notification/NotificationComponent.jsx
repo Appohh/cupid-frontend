@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Client } from '@stomp/stompjs';
 import { Context } from '../../App.jsx';
 import { useContext } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NotificationComponent = () => {
     const [messagesReceived, setMessagesReceived] = useState([]);
@@ -9,6 +11,8 @@ const NotificationComponent = () => {
     const { loggedUser, sendNotification, setSendNotification } = useContext(Context);
 
     useEffect(() => {
+
+        
         const stompClient = new Client({
             brokerURL: 'ws://localhost:8080/ws',
             reconnectDelay: 5000,
@@ -51,7 +55,7 @@ const NotificationComponent = () => {
             receiverId: null,
             message: '',
         });
-        
+
 
     }, [sendNotification, setSendNotification]);
 
@@ -75,6 +79,7 @@ const NotificationComponent = () => {
         console.log('Received!', message.text);
         setMessagesReceived(messagesReceived => [...messagesReceived, { senderId: message.senderId, receiverId: message.receiverId, content: message.text, timestamp: new Date().toISOString() }]);
         console.log("messagesReceived", messagesReceived);
+        notify(message.text);
     };
 
     const handleDisconnect = () => {
@@ -84,11 +89,12 @@ const NotificationComponent = () => {
         onClose();
     };
 
-
+    const notify = (notifyText) => toast(notifyText);
 
 
     return (
-        <></>
+        <>
+        </>
     );
 };
 

@@ -5,6 +5,8 @@ import './Deck.css'
 import SwipeService from '../../Services/SwipeService';
 import MatchService from '../../Services/MatchService';
 import Notification from '../Notification/NotificationComponent'
+import { useContext } from 'react';
+import { Context } from '../../App';
 
 const Deck = ({ cards, userId }) => {
     const [potentialMatches, setPotentialMatches] = useState([])
@@ -14,6 +16,7 @@ const Deck = ({ cards, userId }) => {
     const [resetCardPosition, setResetCardPosition] = useState(false);
     const deckLeftRef = useRef(null);
     const deckRightRef = useRef(null);
+    const { setSendNotification } = useContext(Context);
 
 
 
@@ -69,6 +72,7 @@ const Deck = ({ cards, userId }) => {
                     });
                 }
                 handleSwipe(1);
+                setSendNotification({ receiverId: potentialMatches[currentCardIndex].id, text: '💓You got a new match!' })
             }
 
             //reset card position
@@ -109,6 +113,9 @@ const Deck = ({ cards, userId }) => {
                     //send match request
                     MatchService.createMatch(createMatchRequest).then((response) => {
                         console.log("match response", response)
+                        //send notification
+
+                        
                     }).catch((error) => {
                         //if match could not be made delete swipe
                         SwipeService.deleteSwipe(createdSwipeId).then((response) => {

@@ -10,6 +10,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CustomLink from '../Mechanism/DynamicNavLinks.jsx'
 import NotificationComponent from '../Notification/NotificationComponent.jsx'
+import { ToastContainer } from 'react-toastify'
 
 const Sidebar = ({ }) => {
   const { loggedUser, setLoggedUser, setErrorPopUp } = useContext(Context)
@@ -125,6 +126,7 @@ const Sidebar = ({ }) => {
               <h3 onClick={logOut} >Logout</h3>
             </ul>
             <NotificationComponent />
+            <ToastContainer />
           </>
         ) : (
           <button onClick={() => setLoginPopupDropped(!loginPopupDropped)} className='btn'>Login</button>

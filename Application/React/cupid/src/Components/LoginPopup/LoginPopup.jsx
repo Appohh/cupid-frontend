@@ -41,25 +41,6 @@ const LoginPopup = ({ onClose }) => {
     }
 
 
-
-    const mapToUser = (dataResponse) => {
-        const userJSON = dataResponse.data;
-
-        const user = {
-            id: userJSON.id,
-            birthday: userJSON.birthday,
-            email: userJSON.email,
-            phone: userJSON.phone,
-            gender: userJSON.gender,
-            bio: userJSON.bio,
-            lname: userJSON.lname,
-            fname: userJSON.fname,
-            pimage: userJSON.pimage,
-        };
-
-        return user
-    }
-
     const [formData, setFormData] = useState({
         email: '',
         password: ''
