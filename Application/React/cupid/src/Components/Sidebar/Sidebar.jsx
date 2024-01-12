@@ -109,7 +109,7 @@ const Sidebar = ({ }) => {
     <div className='side'>
       {loginPopupDropped && (<LoginPopup onClose={toggleLoginPopup} />)}
       <div className='side-logo'>
-        <img src={Logo} alt="logo" height="128px" width="270px" />
+        <img src={Logo} alt="logo" height="128px" style={{ width: '19vw', maxWidth: '270px' }} />
       </div>
 
       <div className='side-user-info'>

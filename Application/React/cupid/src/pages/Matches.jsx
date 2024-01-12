@@ -37,15 +37,11 @@ const Matches = () => {
   if (matchUsers.length === 0) {
     return (
       <>
-
-        {showMessagePopUp && (<MessagePopUp receiverId={receiverId} onClose={toggleShowMessagePopUp} />)}
         <div className="matches-content">
           <div className="matches-header">
             <h1>Matches</h1>
           </div>
           <h2>No matches yet</h2>
-          <button onClick={() => { setSendNotification({ receiverId: 28, text: '💓You got a new match!' }) }} className="btn-message">Message</button>
-          <button onClick={toggleShowMessagePopUp} className="btn-message">Message</button>
         </div>
       </>
     )
