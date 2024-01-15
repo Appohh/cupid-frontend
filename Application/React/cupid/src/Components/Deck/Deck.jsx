@@ -136,7 +136,6 @@ const Deck = ({ cards, userId }) => {
 
     return (
         <div className="deck">
-            <Notification receiverId={2} />
             <div className='deck-left'
                 ref={deckLeftRef}>
                 <span></span>
