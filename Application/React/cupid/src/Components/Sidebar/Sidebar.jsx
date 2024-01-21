@@ -25,11 +25,6 @@ const Sidebar = ({ }) => {
   const { decodedToken, isExpired } = useJwt(token || "");
   const navigate = useNavigate();
 
-
-
-    
-
-
   console.log("decodedToken:", decodedToken)
   
 

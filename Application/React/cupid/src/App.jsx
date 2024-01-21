@@ -13,6 +13,7 @@ import ErrorPopUp from './Components/Mechanism/ErrorPopUp';
 import Preferences from './pages/Preferences'
 import Appearance from './pages/Appearance'
 import AccountFinish from './pages/AccountFinish'
+import AdminDashboard from './pages/AdminDashboard'
 
 export const Context = createContext();
 
@@ -56,6 +57,7 @@ function App() {
               <Route path="/foryou" element={<ForYou />} />
               <Route path="/matches" element={<Matches />} />
               <Route path="/foryoulock" element={<AccountFinish />} />
+              <Route path="/dashboard" element={<AdminDashboard />} />
               <Route path="verify/:token" element={<Verify />} />
             </Routes>
           </div>

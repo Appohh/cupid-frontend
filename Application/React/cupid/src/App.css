@@ -363,3 +363,7 @@ body {
 .Toastify__toast-body div {
     font-family: sans-serif;
 }
+
+.nav-text {
+    color: #f1f1f185;
+}

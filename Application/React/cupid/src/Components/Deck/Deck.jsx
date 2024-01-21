@@ -72,6 +72,7 @@ const Deck = ({ cards, userId }) => {
                     });
                 }
                 handleSwipe(1);
+                setSendNotification({ receiverId: userId, text: '💓You got a new match!' })
                 setSendNotification({ receiverId: potentialMatches[currentCardIndex].id, text: '💓You got a new match!' })
             }
 

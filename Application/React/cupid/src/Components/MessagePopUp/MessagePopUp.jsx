@@ -10,7 +10,6 @@ const MessagePopUp = ({ onClose, receiverId }) => {
 
     const onSubmit = (data) => {
         console.log('Form data submitted:', data);
-        alert('Message sent!', data);
         setSendNotification({ receiverId: receiverId, text: loggedUser.fname + ": " + data.message })
     };
 
