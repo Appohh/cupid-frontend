@@ -112,7 +112,7 @@ const Sidebar = ({ }) => {
           <>
             <div className='user-dropdown-head'>
               <img src={`src/assets/uploaded-images/${loggedUser.pimage}`} alt="user-pic" height="35px" width="50px" />
-              <h2 onClick={dropUserInfo}>{loggedUser?.fname + " " + loggedUser?.lname} <i id='userDropIcon' className='fa fa-chevron-circle-down' aria-hidden="true"></i></h2>
+              <h2 onClick={dropUserInfo}>{loggedUser?.fname} <i id='userDropIcon' className='fa fa-chevron-circle-down' aria-hidden="true"></i></h2>
             </div>
             <ul id='user-actions'>
               <CustomLink to="/profile">Profile</CustomLink>

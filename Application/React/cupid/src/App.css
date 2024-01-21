@@ -99,6 +99,7 @@ body {
     background: #474b58;
     border-radius: 12px;
     padding: 9px;
+    overflow: hidden;
 }
 
 .side-user-info .btn {
