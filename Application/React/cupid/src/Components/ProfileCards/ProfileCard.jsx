@@ -65,7 +65,6 @@ function ProfileCard({ targetUser, setCardPosition, parentSetDragging, currentCl
             <div className="profile-img" style={{ backgroundImage: `url(src/assets/uploaded-images/${targetUser.pimage})` }}></div>
             <div className="profile-info">
                 <h2 className="name">{targetUser.fname}, {new Date().getFullYear() - new Date(targetUser.birthday).getFullYear()}</h2>
-                <p className="work">Founder at Apple</p>
                 <p className="location">5km away</p>
                 <p className="bio">{targetUser.bio}</p>
             </div>

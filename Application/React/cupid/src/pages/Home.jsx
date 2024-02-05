@@ -39,7 +39,6 @@ function Home() {
     <>
       <HeroVideo />
       <Testimonials />
-      <button onClick={error}>Error</button>
     </>
   )
 }
